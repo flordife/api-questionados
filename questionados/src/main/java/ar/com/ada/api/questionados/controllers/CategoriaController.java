@@ -1,5 +1,5 @@
 package ar.com.ada.api.questionados.controllers;
 
-public class Categoria {
+public class CategoriaController {
     
 }
