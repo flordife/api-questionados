@@ -22,6 +22,11 @@ public class Pregunta {
     @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Respuesta> opciones = new ArrayList<>();
 
+    public void agregarRespuesta(Respuesta respuesta){
+        this.opciones.add(respuesta);
+    
+    }
+
     public Integer getPreguntaId() {
         return preguntaId;
     }
@@ -44,6 +49,7 @@ public class Pregunta {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+        this.categoria.agregarPregunta(this);
     }
 
     public List<Respuesta> getOpciones() {

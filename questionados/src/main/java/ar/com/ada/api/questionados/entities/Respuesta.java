@@ -36,5 +36,9 @@ public class Respuesta {
     public void setEsCorrecta(boolean esCorrecta) {
         this.esCorrecta = esCorrecta;
     }
-    
+
+    public void setPregunta(Pregunta pregunta) {
+        this.pregunta = pregunta;
+        this.pregunta.agregarRespuesta(this);//relacion bidireccional
+    }
 }
