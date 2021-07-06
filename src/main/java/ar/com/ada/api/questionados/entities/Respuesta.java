@@ -2,6 +2,8 @@ package ar.com.ada.api.questionados.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "respuesta")
 public class Respuesta {
@@ -18,9 +20,12 @@ public class Respuesta {
 
     @ManyToOne
     @JoinColumn(name = "pregunta_id", referencedColumnName = "pregunta_id")
+    @JsonIgnore
     private Pregunta pregunta;
 
-
+    public Integer getRespuestaId() {
+        return respuestaId;
+    }
 
     public String getTexto() {
         return texto;
@@ -30,7 +35,7 @@ public class Respuesta {
         this.texto = texto;
     }
 
-    public boolean getEsCorrecta() {
+    public boolean isEsCorrecta() {
         return esCorrecta;
     }
 
