@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ar.com.ada.api.questionados.entities.Categoria;
+import ar.com.ada.api.questionados.models.request.CategoriaNuevaInfo;
 import ar.com.ada.api.questionados.models.response.GenericResponse;
 import ar.com.ada.api.questionados.services.CategoriaService;
 
@@ -46,6 +47,35 @@ public class CategoriaController {
 
     }
 
+    @PutMapping("/categorias/{id}")
+    public ResponseEntity<GenericResponse> actualizarCategoria(@PathVariable Integer id, @RequestBody CategoriaNuevaInfo categoriaNuevaInfo){
+
+        service.actualizarCategoria(id, categoriaNuevaInfo);
+        //Categoria categoria = service.buscarCategoria(id);
+        //categoria.setNombre(categoriaNuevaInfo.nombreNuevo);
+        //categoria.setDescripcion(categoriaNuevaInfo.descripcionNueva);
+        //service.guardar(categoria);
+
+        GenericResponse r = new GenericResponse();
+        r.isOk = true;
+        //r.id = categoria.getCategoriaId();
+        r.message = "La categoría fue actualizada con éxito";
+
+        return ResponseEntity.ok(r);
+        
+    }
+
+    @DeleteMapping("/categorias/{id}")
+    public ResponseEntity<GenericResponse> eliminarCategoria(@PathVariable Integer id){
+
+        service.eliminarCategoria(id);
+
+        GenericResponse r = new GenericResponse();
+        r.isOk = true;
+        r.message = "La categoría fue eliminada con éxito.";
+
+        return ResponseEntity.ok(r);
+    }
 
     
 }
