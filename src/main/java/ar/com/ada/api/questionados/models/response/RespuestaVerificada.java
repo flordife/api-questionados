@@ -1,4 +1,4 @@
-package ar.com.ada.api.questionados.models.request;
+package ar.com.ada.api.questionados.models.response;
 
 public class RespuestaVerificada {
     

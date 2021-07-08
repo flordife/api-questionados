@@ -3,10 +3,9 @@ package ar.com.ada.api.questionados.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import ar.com.ada.api.questionados.entities.Pregunta;
+import ar.com.ada.api.questionados.entities.*;
 import ar.com.ada.api.questionados.models.request.RespuestaAVerificar;
-import ar.com.ada.api.questionados.models.request.RespuestaVerificada;
+import ar.com.ada.api.questionados.models.response.*;
 import ar.com.ada.api.questionados.services.QuestionadosService;
 
 @RestController
@@ -18,11 +17,13 @@ public class QuestionadosController {
 
     //GET /questionados/next
     @GetMapping("/questionados/next")
-    public ResponseEntity<Pregunta> traerPreguntaRandom(){
+    public ResponseEntity<PreguntaAResolver> traerPreguntaRandom(){
 
-        Pregunta proximaPregunta= service.traerPreguntaRandom();
+        Pregunta pregunta= service.traerPreguntaRandom();
 
-        return ResponseEntity.ok(proximaPregunta);
+        PreguntaAResolver preguntaAResolver = PreguntaAResolver.convertirDesde(pregunta);
+
+        return ResponseEntity.ok(preguntaAResolver);
     }
 
     @PostMapping ("/questionados/verificaciones")
